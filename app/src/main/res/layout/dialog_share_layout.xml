@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingBottom="100dp"
+    android:layout_height="match_parent">
+
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/viewpager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="400dp">-->
+
+    <!--</android.support.v4.view.ViewPager>-->
+    <com.jude.rollviewpager.RollPagerView
+        android:id="@+id/rollPagerView"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/ivClose"
+        android:layout_height="200dp">
+
+    </com.jude.rollviewpager.RollPagerView>
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@mipmap/img_close"
+        android:layout_height="50dp" />
+
+
+</RelativeLayout>
