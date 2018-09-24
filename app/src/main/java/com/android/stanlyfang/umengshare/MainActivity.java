@@ -5,12 +5,12 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.stanlyfang.umengshare.sharetools.ShareDialog;
+import com.stanly.umenghelper.ShareDialog;
+
 
 /**
  * @ProjectName: UmengShare
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onDismiss(View view) {
                         Toast.makeText(mContext, "OnDismiss", Toast.LENGTH_SHORT).show();
                     }
-                }).setPageSize(3).create().show();
+                }).setPageSize(8).setRowSize(4).create().show();
 
                 //                Dialog dialog = new Dialog(mContext);
                 //                dialog.setContentView(R.layout.dialog_share_layout);

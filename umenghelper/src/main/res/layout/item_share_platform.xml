@@ -8,12 +8,12 @@
     <ImageView
         android:id="@+id/ivPlatfrom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/ic_launcher" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tvPlatfrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
         android:text="微信" />
 </LinearLayout>

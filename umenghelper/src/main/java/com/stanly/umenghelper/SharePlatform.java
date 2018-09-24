@@ -1,10 +1,7 @@
-package com.android.stanlyfang.umengshare.sharetools;
+package com.stanly.umenghelper;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
-
-
-import com.android.stanlyfang.umengshare.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -39,42 +36,42 @@ public class SharePlatform {
             case WECHAT:
                 this.ID = WECHAT;
                 this.Name = "微信";
-                this.resId = R.mipmap.ic_launcher;
+                this.resId = R.drawable.umeng_socialize_wechat;
                 break;
             case QQ:
                 this.ID = QQ;
                 this.Name = "QQ";
-                this.resId = R.mipmap.ic_launcher;
+                this.resId = R.drawable.umeng_socialize_qq;
                 break;
             case SINA:
                 this.ID = SINA;
                 this.Name = "微博";
-                this.resId = R.mipmap.ic_launcher;
+                this.resId = R.drawable.umeng_socialize_sina;
                 break;
             case WECHAT_CIRCLE:
                 this.ID = WECHAT;
                 this.Name = "朋友圈";
-                this.resId = R.mipmap.ic_launcher;
+                this.resId = R.drawable.umeng_socialize_wxcircle;
                 break;
             case QZONE:
                 this.ID = QZONE;
                 this.Name = "QQ空间";
-                this.resId = R.mipmap.ic_launcher;
+                this.resId = R.drawable.umeng_socialize_qzone;
                 break;
             case COPY_TEXT:
                 this.ID = COPY_TEXT;
-                this.Name = "赋值内容";
-                this.resId = R.mipmap.ic_launcher;
+                this.Name = "复制内容";
+                this.resId = R.drawable.umeng_socialize_copy;
                 break;
             case COPY_URL:
                 this.ID = COPY_URL;
                 this.Name = "复制地址";
-                this.resId = R.mipmap.ic_launcher;
+                this.resId = R.drawable.umeng_socialize_copyurl;
                 break;
             case OPEN_IN_BROWSER:
                 this.ID = OPEN_IN_BROWSER;
                 this.Name = "浏览器打开";
-                this.resId = R.mipmap.ic_launcher;
+                this.resId = R.drawable.ic_launcher_round;
                 break;
         }
     }
@@ -84,9 +81,6 @@ public class SharePlatform {
     private String Name;
     private int    resId;
 
-    public SharePlatform() {
-
-    }
 
     public SharePlatform(@PlatfromEnum int ID, String Name, int resId) {
         this.ID = ID;
