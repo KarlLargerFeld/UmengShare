@@ -5,9 +5,10 @@
     android:id="@+id/flexboxlayout"
     app:flexDirection="row"
     app:flexWrap="wrap"
-    app:layout_flexBasisPercent="10%"
+    app:alignContent="space_around"
+    android:layout_centerVertical="true"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical">
 

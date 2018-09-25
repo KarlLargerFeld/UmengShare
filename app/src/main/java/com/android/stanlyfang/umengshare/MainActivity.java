@@ -10,6 +10,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.stanly.umenghelper.ShareDialog;
+import com.stanly.umenghelper.SharePlatform;
+import com.stanly.umenghelper.UmengHelper;
+import com.stanly.umenghelper.enumerate.ShareCategoryEnum;
+import com.stanly.umenghelper.listener.OnDefaultShareListener;
+
+import org.jetbrains.annotations.NotNull;
 
 
 /**
@@ -34,12 +40,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 new ShareDialog.Builder(mContext).addAllPlatForm().setOnDismissListener(new ShareDialog.OnDismissListener() {
                     @Override
                     public void onDismiss(View view) {
                         Toast.makeText(mContext, "OnDismiss", Toast.LENGTH_SHORT).show();
                     }
-                }).setPageSize(8).setRowSize(4).create().show();
+                }).setPageSize(8).setRowSize(4).setOnShareListener(new OnDefaultShareListener() {
+                    @Override
+                    public void onShare(@NotNull SharePlatform platform) {
+                        
+                    }
+                }).create().show();
+
+
 
                 //                Dialog dialog = new Dialog(mContext);
                 //                dialog.setContentView(R.layout.dialog_share_layout);
