@@ -24,8 +24,10 @@ import com.google.android.flexbox.FlexboxLayout
 import com.jude.rollviewpager.RollPagerView
 import com.jude.rollviewpager.adapter.StaticPagerAdapter
 import com.stanly.umenghelper.enumerate.SharePlatfromEnum
-import com.stanly.umenghelper.listener.ShareListener
+import com.stanly.umenghelper.listener.OnShareBoardClickListener
 import com.umeng.socialize.ShareAction
+import com.umeng.socialize.bean.SHARE_MEDIA
+import com.umeng.socialize.media.UMWeb
 
 import java.util.ArrayList
 
@@ -49,14 +51,14 @@ class ShareDialog : Dialog {
     //设置每行显示几个
     private var mRowSize = 4
 
+
     internal var mItemViewList: MutableList<View> = ArrayList()
 
-    private var mOnShareListener: ShareListener? = null
+    private var mOnShareBoardClickListener: OnShareBoardClickListener? = null
 
     interface OnDismissListener {
         fun onDismiss(view: View)
     }
-
 
 
     private constructor(context: Context) : super(context, R.style.dialog) {}
@@ -75,6 +77,9 @@ class ShareDialog : Dialog {
     }
 
 
+    /**
+     * 显示Dialog
+     */
     override fun show() {
         val dm = getDisplayMetrics()
         window?.setFlags(Window.FEATURE_NO_TITLE, Window.FEATURE_NO_TITLE)
@@ -146,9 +151,7 @@ class ShareDialog : Dialog {
 
     private fun addItem(flexboxLayout: FlexboxLayout, index: Int, context: Context) {
         val dm = getDisplayMetrics()
-
         val params = ViewGroup.LayoutParams(dm.widthPixels / mRowSize, ViewGroup.LayoutParams.WRAP_CONTENT)
-
         val sharePlatform = mSharePlatforms!![index]
         val tvPlatformItem = TextView(context)
         tvPlatformItem.setTextColor(Color.WHITE)
@@ -166,12 +169,44 @@ class ShareDialog : Dialog {
         tvPlatformItem.tag = sharePlatform
 
         tvPlatformItem.setOnClickListener { v ->
-            println("On PlatfromItem Click")
-            Timber.e("On PlatfromItem Click")
-            if (mOnShareListener != null) {
+            if (mOnShareBoardClickListener != null) {
                 val platform = v.tag as SharePlatform
-                mOnShareListener?.onShareBefore(platform)
-                mOnShareListener?.onShareAfter(platform)
+
+                when (platform.id) {
+                    SharePlatfromEnum.WECHAT -> {
+                        mOnShareBoardClickListener?.onShare(SHARE_MEDIA.WEIXIN)
+                    }
+                    SharePlatfromEnum.QQ -> {
+                        mOnShareBoardClickListener?.onShare(SHARE_MEDIA.QQ)
+                    }
+                    SharePlatfromEnum.SINA -> {
+                        mOnShareBoardClickListener?.onShare(SHARE_MEDIA.SINA)
+                    }
+                    SharePlatfromEnum.WECHAT_CIRCLE -> {
+                        mOnShareBoardClickListener?.onShare(SHARE_MEDIA.WEIXIN_CIRCLE)
+                    }
+                    SharePlatfromEnum.QZONE -> {
+                        mOnShareBoardClickListener?.onShare(SHARE_MEDIA.QZONE)
+                    }
+                    else -> {
+                        mOnShareBoardClickListener?.doOther(platform.id)
+//                        SharePlatfromEnum.OPEN_IN_BROWSER -> {
+//                            //                        shareAction.platform = SHARE_MEDIA
+//                        }
+//                        SharePlatfromEnum.COPY_URL -> {
+//                            //复制URL
+//                        }
+//                        SharePlatfromEnum.COPY_TEXT -> {
+//                            //复制
+//                        }
+//                        SharePlatfromEnum.INTRESTING -> {
+//
+//                        }
+                    }
+                }
+
+
+
                 dismiss()
             } else {
                 Timber.e("mOnShareListener is not to be null")
@@ -185,9 +220,10 @@ class ShareDialog : Dialog {
         //        UMShareAPI umShareAPI;
         private val platformList = ArrayList<SharePlatform>()
         private var mOnDismissListener: OnDismissListener? = null
-        private var mOnShareListener: ShareListener? = null
+        private var mOnShareListener: OnShareBoardClickListener? = null
         private var pageSize = 8
         private var rowSize = 4
+
 
         fun addPlatform(sharePlatform: SharePlatform): Builder {
             platformList.add(sharePlatform)
@@ -274,16 +310,20 @@ class ShareDialog : Dialog {
             return this
         }
 
-        fun setOnShareListener(listener: ShareListener): Builder {
+        fun setOnShareBoardClickListener(listener: OnShareBoardClickListener): Builder {
             this.mOnShareListener = listener
             return this
         }
 
-        fun setShareContent(obj:Any?):Builder{
+        fun setShareContent(web: UMWeb): Builder {
 
             return this
         }
 
+        fun setShareAction(action: ShareAction): Builder {
+
+            return this
+        }
 
 
         fun create(): ShareDialog {
@@ -311,7 +351,8 @@ class ShareDialog : Dialog {
             shareDialog.mOnDismissListener = this.mOnDismissListener
             shareDialog.mPageSize = this.pageSize
             shareDialog.mRowSize = this.rowSize
-            shareDialog.mOnShareListener = this.mOnShareListener
+            shareDialog.mOnShareBoardClickListener = this.mOnShareListener
+
             shareDialog.setContentView(mContext)
 
             return shareDialog

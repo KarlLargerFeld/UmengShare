@@ -13,6 +13,6 @@ import com.umeng.socialize.sina.webview.ShareDialog
  * @Update :
  */
 
-fun ShareAction.setCustemDialog(dialog:ShareDialog) : ShareAction{
+fun ShareAction.custemDialog(dialog:ShareDialog) : ShareAction{
     return this
 }

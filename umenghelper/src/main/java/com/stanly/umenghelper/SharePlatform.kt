@@ -18,7 +18,7 @@ import java.lang.annotation.RetentionPolicy
  */
 class SharePlatform {
 
-    var id: SharePlatfromEnum
+    var id: SharePlatfromEnum = SharePlatfromEnum.WECHAT
     var name: String? = null
     var resId: Int = 0
 
@@ -29,51 +29,49 @@ class SharePlatform {
     }
 
     constructor(platform: SharePlatfromEnum) {
-        when (platform)
-        {
+        when (platform) {
             SharePlatfromEnum.WECHAT -> {
-            this.id = SharePlatfromEnum.WECHAT
-            this.name = "微信"
-            this.resId = R.drawable.umeng_socialize_wechat
-        }
+                this.id = SharePlatfromEnum.WECHAT
+                this.name = "微信"
+                this.resId = R.drawable.umeng_socialize_wechat
+            }
             SharePlatfromEnum.QQ -> {
-            this.id = SharePlatfromEnum.QQ
-            this.name = "QQ"
-            this.resId = R.drawable.umeng_socialize_qq
-        }
+                this.id = SharePlatfromEnum.QQ
+                this.name = "QQ"
+                this.resId = R.drawable.umeng_socialize_qq
+            }
             SharePlatfromEnum.SINA -> {
-            this.id = SharePlatfromEnum.SINA
-            this.name = "微博"
-            this.resId = R.drawable.umeng_socialize_sina
-        }
+                this.id = SharePlatfromEnum.SINA
+                this.name = "微博"
+                this.resId = R.drawable.umeng_socialize_sina
+            }
             SharePlatfromEnum.WECHAT_CIRCLE -> {
-            this.id = SharePlatfromEnum.WECHAT
-            this.name = "朋友圈"
-            this.resId = R.drawable.umeng_socialize_wxcircle
-        }
+                this.id = SharePlatfromEnum.WECHAT_CIRCLE
+                this.name = "朋友圈"
+                this.resId = R.drawable.umeng_socialize_wxcircle
+            }
             SharePlatfromEnum.QZONE -> {
-            this.id = SharePlatfromEnum.QZONE
-            this.name = "QQ空间"
-            this.resId = R.drawable.umeng_socialize_qzone
-        }
+                this.id = SharePlatfromEnum.QZONE
+                this.name = "QQ空间"
+                this.resId = R.drawable.umeng_socialize_qzone
+            }
             SharePlatfromEnum.COPY_TEXT -> {
-            this.id = SharePlatfromEnum.COPY_TEXT
-            this.name = "复制内容"
-            this.resId = R.drawable.umeng_socialize_copy
-        }
+                this.id = SharePlatfromEnum.COPY_TEXT
+                this.name = "复制内容"
+                this.resId = R.drawable.umeng_socialize_copy
+            }
             SharePlatfromEnum.COPY_URL -> {
-            this.id = SharePlatfromEnum.COPY_URL
-            this.name = "复制地址"
-            this.resId = R.drawable.umeng_socialize_copyurl
-        }
+                this.id = SharePlatfromEnum.COPY_URL
+                this.name = "复制地址"
+                this.resId = R.drawable.umeng_socialize_copyurl
+            }
             SharePlatfromEnum.OPEN_IN_BROWSER -> {
-            this.id = SharePlatfromEnum.OPEN_IN_BROWSER
-            this.name = "浏览器打开"
-            this.resId = R.drawable.ic_launcher_round
-        }
+                this.id = SharePlatfromEnum.OPEN_IN_BROWSER
+                this.name = "浏览器打开"
+                this.resId = R.drawable.ic_launcher_round
+            }
         }
     }
-
 
 
 }

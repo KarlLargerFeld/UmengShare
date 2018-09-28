@@ -5,7 +5,9 @@ import com.stanly.umenghelper.enumerate.ShareCategoryEnum
 import com.stanly.umenghelper.enumerate.ShareCategoryEnum.*
 import com.stanly.umenghelper.enumerate.SharePlatfromEnum
 import com.stanly.umenghelper.enumerate.SharePlatfromEnum.*
+import com.umeng.socialize.ShareAction
 import com.umeng.socialize.ShareContent
+import com.umeng.socialize.bean.SHARE_MEDIA
 
 /**
  * @ProjectName:    UmengShare
@@ -16,27 +18,7 @@ import com.umeng.socialize.ShareContent
  * @Description:
  * @Update :
  */
- interface ShareListener {
-    fun onShareBefore(platform: SharePlatform)
-    fun onShare(platform: SharePlatform)
-    fun onShareAfter(platform: SharePlatform)
-}
-
 interface OnShareBoardClickListener{
-    fun onShareBoardClick(shareCategoryEnum: ShareCategoryEnum,shareContent: ShareContent)
-}
-
-abstract class OnDefaultShareListener : ShareListener {
-    override fun onShareBefore(platform: SharePlatform) {
-
-    }
-
-    override fun onShareAfter(platform: SharePlatform) {
-
-    }
-
-    override fun onShare(platform: SharePlatform) {
-
-
-    }
+    fun onShare(media: SHARE_MEDIA)
+    fun doOther(sharePlatfromEnum: SharePlatfromEnum)
 }

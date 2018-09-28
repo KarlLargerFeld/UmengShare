@@ -11,4 +11,4 @@ import com.stanly.umenghelper.enumerate.ShareCategoryEnum
  * @Description:
  * @Update :
  */
-data class UShareContent(var title: String, var content: String, var url: String,var shareCategoryEnum: ShareCategoryEnum)
+data class UShareContent(var title: String, var content: String, var url: String)

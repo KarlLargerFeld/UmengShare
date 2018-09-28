@@ -1,1 +1,1 @@
-include ':app', ':umenghelper'
+include ':app', ':umenghelper', ':commentmodule'

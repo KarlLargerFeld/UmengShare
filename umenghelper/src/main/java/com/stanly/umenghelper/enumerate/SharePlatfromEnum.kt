@@ -41,5 +41,10 @@ enum class SharePlatfromEnum {
     /**
      * 复制文本内容
      */
-    COPY_TEXT
+    COPY_TEXT,
+
+    /**
+     * 趣味
+     */
+    INTRESTING
 }
