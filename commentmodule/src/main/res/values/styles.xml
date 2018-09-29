@@ -13,4 +13,10 @@
         <attr name="isShowPraise" format="boolean"/>
     </declare-styleable>
 
+
+    <style name="FragmentDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/in_from_right</item>
+        <item name="android:windowExitAnimation">@anim/out_to_left</item>
+    </style>
+
 </resources>

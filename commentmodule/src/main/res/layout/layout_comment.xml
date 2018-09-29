@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="20dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="20dp">
 
     <EditText
         android:id="@+id/etCommentBox"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/tvDoComment"
         android:layout_width="0dp"
-        android:textSize="14sp"
-        android:maxLines="10"
-        android:minLines="1"
-        android:text="死死死死死死死死死死死死死死死死死所死死死死死死死死死死死死死死
-        死死死所死死死死死死死死死死死死死死死死死所死死死死死死死死死死死死死死死死死所"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/shape_comment_box"
+        android:gravity="center_vertical"
         android:hint="请输入评论"
-        android:layout_height="50dp" />
+        android:maxLines="10"
+        android:minHeight="40dp"
+        android:minLines="1"
+        android:lineSpacingExtra="3dp"
+        android:text=""
+        android:scrollbars="vertical"
+        android:textSize="14sp"
+        android:inputType="textMultiLine" />
 
     <TextView
-        android:id="@+id/tvDoComment"
+        android:id="@+id/tvSendComment"
         android:layout_width="wrap_content"
-        android:text="评论"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/etCommentBox"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_height="wrap_content" />
+        android:layout_marginStart="10dp"
+        android:text="评论"
+        android:textColor="@color/colorAccent" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

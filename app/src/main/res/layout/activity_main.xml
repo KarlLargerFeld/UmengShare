@@ -23,10 +23,12 @@
 
 
     <com.android.stanlyfang.commentmodule.CommentView
+        android:id="@+id/commentView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:isShowCommentNum="false"
-        app:isShowPraise="false"
-        app:layout_constraintTop_toBottomOf="@id/btnShare"
+        app:isShowCommentNum="true"
+        app:isShowPraise="true"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

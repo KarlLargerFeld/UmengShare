@@ -7,8 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.stanlyfang.commentmodule.CommentDialogFragment;
+import com.android.stanlyfang.commentmodule.CommentView;
 import com.stanly.umenghelper.ShareDialog;
 import com.stanly.umenghelper.enumerate.SharePlatfromEnum;
 import com.stanly.umenghelper.listener.OnShareBoardClickListener;
@@ -29,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
  * @Description:
  * @Update :
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CommentView.OnCommentNumClickListener,CommentView.OnPraiseClickListener {
 
     static {
         PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
@@ -53,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        CommentView commentView = findViewById(R.id.commentView);
+        commentView.setOnCommentNumClickListener(this);
+
+        commentView.setOnPraiseClickListener(this);
+
 
 
         findViewById(R.id.btnShare).setOnClickListener(new View.OnClickListener() {
@@ -90,5 +100,16 @@ public class MainActivity extends AppCompatActivity {
 //                      }).create().show();
             }
         });
+    }
+
+    @Override
+    public void OnCommentNumClick() {
+        Toast.makeText(mContext, "You Clicked the CommentNum Button", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void OnPraiseClick(ImageView praiseView) {
+//        praiseView.setVisibility(View.GONE);
+        Toast.makeText(mContext, "You Clicked the Praise Button", Toast.LENGTH_SHORT).show();
     }
 }
