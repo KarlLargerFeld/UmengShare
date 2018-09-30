@@ -1,10 +1,8 @@
 package com.android.stanlyfang.umengshare;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,13 +10,8 @@ import android.widget.Toast;
 
 import com.android.stanlyfang.commentmodule.CommentDialogFragment;
 import com.android.stanlyfang.commentmodule.CommentView;
-import com.stanly.umenghelper.ShareDialog;
-import com.stanly.umenghelper.enumerate.SharePlatfromEnum;
-import com.stanly.umenghelper.listener.OnShareBoardClickListener;
+import com.android.stanlyfang.commentmodule.listener.DialogFragmentDataCallback;
 import com.umeng.socialize.PlatformConfig;
-import com.umeng.socialize.ShareAction;
-import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.media.UMWeb;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -32,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  * @Description:
  * @Update :
  */
-public class MainActivity extends AppCompatActivity implements CommentView.OnCommentNumClickListener,CommentView.OnPraiseClickListener {
+public class MainActivity extends AppCompatActivity implements CommentView.OnCommentNumClickListener,CommentView.OnPraiseClickListener, DialogFragmentDataCallback {
 
     static {
         PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
@@ -111,5 +104,11 @@ public class MainActivity extends AppCompatActivity implements CommentView.OnCom
     public void OnPraiseClick(ImageView praiseView) {
 //        praiseView.setVisibility(View.GONE);
         Toast.makeText(mContext, "You Clicked the Praise Button", Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void OnDoComment(@NotNull String content) {
+        Toast.makeText(mContext, content, Toast.LENGTH_SHORT).show();
     }
 }

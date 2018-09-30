@@ -8,13 +8,16 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
+import android.support.v4.content.ContextCompat
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.DisplayMetrics
 import android.view.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.android.stanlyfang.commentmodule.listener.DialogFragmentDataCallback
+import java.lang.IllegalStateException
 
 /**
  * @ProjectName:    UmengShare
@@ -40,6 +43,14 @@ class CommentDialogFragment : DialogFragment() {
 
     private lateinit var mTextSend: TextView
     private lateinit var mEditContent: EditText
+    private var mOnDoCommentLisener: DialogFragmentDataCallback? = null
+
+    override fun onAttach(context: Context?) {
+        if (activity !is DialogFragmentDataCallback) {
+            throw IllegalStateException("DialogFragment 所在的 activity 必须实现 DialogFragmentDataCallback 接口")
+        }
+        super.onAttach(context)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         println("onCreateDialog")
@@ -50,25 +61,46 @@ class CommentDialogFragment : DialogFragment() {
         builder.setView(view)
         mTextSend = view.findViewById(R.id.tvSendComment)
         mEditContent = view.findViewById(R.id.etCommentBox)
+        mOnDoCommentLisener = activity as DialogFragmentDataCallback
         mTextSend.setOnClickListener {
-
+            mOnDoCommentLisener?.OnDoComment(mEditContent.text.toString())
         }
+        mEditContent.addTextChangedListener(object : TextWatcher {
+            private var temp: CharSequence? = null
+            override fun afterTextChanged(s: Editable?) {
+                if (temp!!.isNotEmpty()) {
+                    mTextSend.isEnabled = true
+                    mTextSend.isClickable = true
+                } else {
+                    mTextSend.isEnabled = false
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                temp = s
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+        })
         mEditContent.isFocusable = true
         mEditContent.isFocusableInTouchMode = true
         mEditContent.requestFocus()
 
-//        mEditContent.viewTreeObserver.addOnGlobalFocusChangeListener(object : ViewTreeObserver.OnGlobalFocusChangeListener {
-//            override fun onGlobalFocusChanged(oldFocus: View?, newFocus: View?) {
-//                inputMethodManager = getActivity()?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//
-//                if (inputMethodManager!!.showSoftInput(mEditContent, 0)) {
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                        mEditContent.viewTreeObserver.removeOnGlobalLayoutListener(this)
-//                    } else {
-//                    }
-//                }
-//            }
-//        })
+        //        mEditContent.viewTreeObserver.addOnGlobalFocusChangeListener(object : ViewTreeObserver.OnGlobalFocusChangeListener {
+        //            override fun onGlobalFocusChanged(oldFocus: View?, newFocus: View?) {
+        //                inputMethodManager = getActivity()?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        //
+        //                if (inputMethodManager!!.showSoftInput(mEditContent, 0)) {
+        //                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        //                        mEditContent.viewTreeObserver.removeOnGlobalLayoutListener(this)
+        //                    } else {
+        //                    }
+        //                }
+        //            }
+        //        })
 
         mEditContent.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
@@ -77,7 +109,7 @@ class CommentDialogFragment : DialogFragment() {
                     if (inputMethodManager!!.showSoftInput(mEditContent, 0)) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                             mEditContent.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                        }else{
+                        } else {
                             mEditContent.viewTreeObserver.removeGlobalOnLayoutListener(this)
                         }
                     }

@@ -1,6 +1,5 @@
 package com.android.stanlyfang.commentmodule;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
@@ -35,7 +34,6 @@ public class CommentView extends LinearLayout {
 
     OnCommentNumClickListener mOnCommentNumClickListener;
     OnPraiseClickListener     mOnPraiseClickListener;
-    private OnDoCommentListener mOnDoCommentListener;
 
     public interface OnCommentNumClickListener {
         void OnCommentNumClick();
@@ -43,10 +41,6 @@ public class CommentView extends LinearLayout {
 
     public interface OnPraiseClickListener {
         void OnPraiseClick(ImageView praiseView);
-    }
-
-    public interface OnDoCommentListener {
-        void OnDoComment(String content);
     }
 
 
@@ -58,9 +52,6 @@ public class CommentView extends LinearLayout {
         this.mOnPraiseClickListener = listener;
     }
 
-    public void setOnDoCommentListener(OnDoCommentListener listener) {
-        this.mOnDoCommentListener = listener;
-    }
 
 
     public CommentView(Context context) {
